@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>marval card game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vesper+Libre:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      color: white;
+      font-family: 'Vesper Libre', serif;
+      overflow: hidden;
+      font-size: 10px;
+
+    }
+
+    .canavs {
+      width: 100%;
+      height: 100vh;
+      background: url(game/wp3238102-avengers-wallpaper-logo.jpg);
+      /* background: #312c51; */
+      background-position: center;
+      background-size: cover;
+      position: relative;
+
+    }
+
+    .container {
+      width: 70%;
+      height: 100vh;
+      
+      margin: auto;
+      /* background: rgba(255, 255, 255, 0.25); */
+      /* box-shadow: 8px 20px 20px rgba(255, 255, 255, 0.5); */
+      text-align: center;
+      display: grid;
+      place-items: center;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      /* margin: 17%; */
+    }
+
+    .col {
+      flex-basis: 40%;
+    }
+
+    h1 {
+      font-size: 6rem;
+      margin: 15px;
+      text-shadow: 5px 0 black;
+      color: #e6dd3b;
+      animation: flow 2s alternate infinite;
+    }
+    @keyframes flow{
+      0%{transform: translateX(12px);}
+      100%{transform: translateX(-12px);}
+    }
+
+    p {
+      font-size: 7rem;
+      text-shadow: 1px 0 #fff;
+      color: #c6ffc1;
+    }
+
+    .yo button {
+      color: #000;
+      font-size: 1.5rem;
+      border-radius: 28px;
+      border: none;
+      padding: 12px;
+      background: #ddda06;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      transition: all 0.5s;
+    }
+    .yo button:hover{
+      letter-spacing: 8px;
+    }
+    #on{
+      position: absolute;
+      text-align: center;
+      
+      top: 23%;
+      left: 12%;
+    }
+    #off{
+      position: absolute;
+      text-align: center;
+      
+      top: 23%;
+      right: 12%;
+
+    }
+
+
+
+
+    @media screen and (max-width :700px) {
+      * {
+        font-size: 3px;
+      }
+      img{
+        width: 100%;
+      }
+      .yo button {
+      font-size: 9rem;
+    }
+    h1{
+      font-size: 7rem;
+    }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="canavs">
+    <span id="on" onclick="music()"><i class="fa fa-music" style="font-size: 15px; padding: 9px;"></i></span>
+    <audio id="audio" src="game/epic-2378.mp3"></audio>
+    <span id="off" onclick="musicoff()" ><i class="fa fa-volume-off" style="font-size: 15px; padding: 9px;"></i></span>
+    <div class="container">
+      <h1>Super Hero VS Super Evils</h1>
+      <div class="row">
+        <div class="col">
+          <p>You</p>
+          <img src="game/game1.jpg" id="check1" width="60%" style="border: 2px solid #ff8303;padding: 1px;">
+        </div>
+
+        <div class="col">
+          <p>Computer</p>
+          <img src="game/evil1.jpg" id="check2" width="60%" style="border: 2px solid #ce1f6a;padding: 1px;">
+
+        </div>
+      </div>
+      <div class="yo">
+        <button onclick="start()" >Show</button>
+        <audio id="win" src="game/yt1s.com - You Win Street Fighter  Sound Effect.mp3"></audio>
+      </div>
+    </div>
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    start = () => {
+      const play1 = Math.floor(Math.random() * 10) + 1;
+      const play1game = `game/game${play1}.jpg`;
+      document.getElementById("check1").setAttribute("src", play1game);
+
+      const play2 = Math.floor(Math.random() * 10) + 1;
+      const play2game = `game/evil${play2}.jpg`;
+      document.getElementById("check2").setAttribute("src", play2game);
+
+    
+
+      if (play1 < play2) {
+        document.querySelector('h1').innerHTML = "You win";
+        var audio= document.getElementById("win");
+        audio.play();
+      }
+    
+      else if (play1 > play2) {
+        document.querySelector('h1').innerHTML = "you lose";
+
+      }
+      else {
+        document.querySelector('h1').innerHTML = "DRAW";
+      }
+    }
+    var audio= document.getElementById("audio");
+    function music(){
+      audio.play();
+      
+      
+    }
+    function musicoff(){
+      audio.pause();
+    }
+    
+
+
+    
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
